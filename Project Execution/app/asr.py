@@ -10,7 +10,7 @@ class ASRModule:
 #
     def __init__(self):
         
-        self.beep, self.sr = librosa.load('/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailAI/beep.mp3')
+        self.beep, self.sr = librosa.load('beep.mp3')
     def transcribe_audio(self, time=5):
         print('waiting for a reply ....')
 
