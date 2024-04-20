@@ -9,12 +9,7 @@ from textblob import TextBlob
 class ASRModule:
 #
     def __init__(self):
-        # asr_processor = Wav2Vec2ProcessorWithLM.from_pretrained('/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailAI/notebooks/asr/models/wav2vec2LM')
-        # self.pipe = pipeline('automatic-speech-recognition',
-        #                      model=Wav2Vec2ForCTC.from_pretrained('/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailAI/notebooks/asr/models/wav2vec2LM'),
-        #                      tokenizer=asr_processor.tokenizer,
-        #                      feature_extractor=asr_processor.feature_extractor,
-        #                      decoder=asr_processor.decoder)
+        
         self.beep, self.sr = librosa.load('/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailAI/beep.mp3')
     def transcribe_audio(self, time=5):
         print('waiting for a reply ....')
