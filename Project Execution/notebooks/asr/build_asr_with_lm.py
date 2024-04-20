@@ -27,26 +27,6 @@ processor_with_lm = Wav2Vec2ProcessorWithLM(feature_extractor=processor.feature_
                                             decoder=decoder)
 
 
-# %% MODEL TESTING
-#
-# waveform, sr = librosa.load(f'/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailai/utils/data/audio/2.mp3', sr=16000) # load from file
-#
-# inputs = processor_with_lm(waveform, sampling_rate=16000, return_tensor='pt', padding=True)
-# input_values = torch.FloatTensor(inputs.input_values)
-# attention_mask = torch.LongTensor(inputs.attention_mask)
-#
-# pred = model(input_values,attention_mask)
-#
-# with torch.no_grad():
-#     logits = model(input_values, attention_mask).logits
-#
-# pred_with_lm = processor_with_lm.batch_decode(logits.numpy()).text[0].lower()
-# pred = processor.batch_decode(torch.argmax(logits, dim=-1))[0].lower()
-#
-#
-# print(f'prediction with lm: {pred_with_lm}\n'
-#       f'prediction witouth lm: {pred}')
-
 #%% SAVE MODEL
 
 model.save_pretrained("models/wav2vec2LM")
