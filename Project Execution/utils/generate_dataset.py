@@ -81,15 +81,6 @@ def get_random_object():
     conj = ' with object'
 
 
-    # ret_text = ['informazioni ricevimento', 'elezioni studentesche', 'Posticipo incontro',
-    #             'Firme per la partecipazione al corso di informatica', 'Ritiro attestato',
-    #             'Problema accesso sito universitario', 'Promemoria', 'info su prescrizione medica',
-    #             'Assistenza tecnica', 'Reclamo e richiesta di assistenza', 'Candidatura spontanea',
-    #             'comunicazione importante', 'ordine del giorno', 'richiesta modulo', 'consegna progetto',
-    #             'conferma invito', 'attivazione profilo', 'convalida esame', 'abbonamento napoli calcio',
-    #             'sottoscrizione abbonamento', 'scadenza consegna', 'rinnovo abbonamento netflix'][
-    #     random.randint(0, 20)].lower()
-
     ret_text = ['reception information', 'student elections', 'Postpone meeting',
                 'Signatures for participation in the computer course', 'Withdrawal of certificate',
                 'Problem accessing university site', 'Reminder', 'info on medical prescription',
@@ -111,11 +102,9 @@ with open('data/names.txt') as f:
 def get_random_person(to=True):
     name = names[random.randint(0, len(names) - 1)]
 
-    # conj = ['da', 'di', 'inviate da', 'con mittente'][random.randint(0, 3)]
 
     conj =  ['from', 'of', 'sent from', 'with sender'][random.randint(0, 3)]
     if to:
-        # conj = ['a', 'per', 'con destinatario'][random.randint(0, 2)]
         conj = ['to', 'to', 'with recipient'][random.randint(0, 2)]
 
     return f" {conj} {name.lower()}", ['O'] * len(conj.split(' ')) + ['B-PER', 'I-PER']
@@ -128,14 +117,8 @@ def get_random_date():
 
     if type == 'exact':
 
-        # conj = ['ricevute il', 'del', 'con data'][random.randint(0, 2)]
+    
         conj = ['received on', 'on', 'with date'][random.randint(0, 2)]
-
-        # day = ['primo', 'due', 'tre', 'quattro', 'cingue', 'sei', 'sette', 'otto', 'nove', 'dieci',
-        #        'undici', 'dodici', 'tredici', 'quattordici', 'quindici', 'sedici', 'diciasette',
-        #        'diciotto', 'diciannove', 'venti', 'ventuno', 'ventidue', 'ventitre', 'ventiquattro',
-        #        'venticinque', 'ventisei', 'ventisette', 'ventotto', 'ventinove', 'trenta',
-        #        'trentuno'][random.randint(0, 30)]
 
         day = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth',
                'eleventh', 'twelfth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth',
@@ -143,10 +126,7 @@ def get_random_date():
                'twenty-fifth', 'twenty-sixth', 'twenty-seventh', 'twenty-eighth', 'twenty-ninth', 'thirtieth',
                'thirty-first'][random.randint(0, 30)]
 
-        # month = ['gennaio', 'febbraio', 'marzo', 'aprile',
-        #          'maggio', 'giugno', 'luglio', 'agosto',
-        #          'settembre', 'ottobre', 'novembre', 'dicembre'][random.randint(0, 11)]
-
+    
         month = ['January', 'February', 'March', 'April',
                  'May', 'June', 'July', 'August',
                  'September', 'October', 'November', 'December'][random.randint(0, 11)]
@@ -155,19 +135,7 @@ def get_random_date():
         ret_text = f"{conj} {day} {month}"
         ret_slots = ['O'] * len(conj.split(' ')) + ['B-DATE', 'I-DATE']
     elif type == 'relative':
-        # ret_text, ret_slots = [('di questo mese', ['O', 'B-DATE', 'I-DATE']),
-        #                        ('ricevute questo mese', ['O', 'B-DATE', 'I-DATE']),
-        #                        ('del mese scorso', ['O', 'B-DATE', 'I-DATE']),
-        #                        ('ricevute il mese scorso', ['O', 'O', 'B-DATE', 'I-DATE']),
-        #                        ('di questa settimana', ['O', 'B-DATE', 'I-DATE']),
-        #                        ('ricevute questa settimana', ['O', 'B-DATE', 'I-DATE']),
-        #                        ('della settimana scorsa', ['O', 'B-DATE', 'I-DATE']),
-        #                        ('ricevute la settimana scorsa', ['O', 'O', 'B-DATE', 'I-DATE']),
-        #                        ('di oggi', ['O', 'B-DATE']),
-        #                        ('ricevute oggi', ['O', 'B-DATE']),
-        #                        ('di ieri', ['O', 'B-DATE']),
-        #                        ('ricevute ieri', ['O', 'B-DATE'])][random.randint(0, 11)]
-
+        
         ret_text, ret_slots = [('this month', ['O', 'B-DATE', 'I-DATE']),
                                ('received this month', ['O', 'B-DATE', 'I-DATE']),
                                ('last month', ['O', 'B-DATE', 'I-DATE']),
@@ -183,11 +151,7 @@ def get_random_date():
 
 
     elif type == 'month':
-        # pref = ['ricevute a', 'di'][random.randint(0, 1)]
-        # month = ['gennaio', 'febbraio', 'marzo', 'aprile',
-        #          'maggio', 'giugno', 'luglio', 'agosto',
-        #          'settembre', 'ottobre', 'novembre', 'dicembre'][random.randint(0, 11)]
-
+        
         pref = ['received in', 'in'][random.randint(0, 1)]
         month = ['January', 'February', 'March', 'April',
                  'May', 'June', 'July', 'August',
@@ -203,19 +167,14 @@ def compose_sentence(intent):
     if intent == 0:
 
         if random.randint(1, 7) <= 4:
-            # ret_text = ['potresti', 'vorresti', 'voglio', 'puoi'][random.randint(0, 1)] + \
-            #            " " + ['inviare', 'mandare', 'spedire'][random.randint(0, 2)] + \
-            #            " " + ['una mail', 'un messaggio'][random.randint(0, 1)]
-
+           
             ret_text = ['could you', 'would you', 'I want to', 'can you'][random.randint(0, 1)] + \
                       " " + ['send', 'send', 'send'][random.randint(0, 2)] + \
                       " " + ['an email', 'a message'][random.randint(0, 1)]
 
             ret_slots = ['O', 'O', 'O', 'O']
         else:
-            # ret_text = ['invia', 'manda', 'spedisci'][random.randint(0, 2)] + ' ' + \
-            #            ['una mail', 'un messaggio'][random.randint(0, 1)]
-
+            
             ret_text = ['send','send','send'][random.randint(0, 2)] + ' ' + \
                        ['an email', 'a message'][random.randint(0, 1)]
 
@@ -237,10 +196,7 @@ def compose_sentence(intent):
         n = random.randint(0, 2)
 
         if n == 0:
-            # ret_text = ['potresti', 'vorresti'][random.randint(0, 1)] + ' ' + \
-            #            ['cercarmi', 'leggermi', 'cercare', 'leggere'][random.randint(0, 3)] + ' ' + \
-            #            ['le mail', 'i messaggi'][random.randint(0, 1)]
-
+           
             ret_text = ['could you', 'would you'][random.randint(0, 1)] + ' ' + \
                        ['look for', 'read me', 'search', 'read'][random.randint(0, 3)] + ' ' + \
                        ['mails', 'messages'][random.randint(0, 1)]
@@ -248,18 +204,14 @@ def compose_sentence(intent):
             ret_slots = ['O', 'O', 'O', 'O']
 
         elif n == 1:
-            # ret_text = ['vorrei', 'voglio'][random.randint(0, 1)] + ' ' + \
-            #            ['cercare', 'leggere'][random.randint(0, 1)] + ' ' + \
-            #            ['delle mail', 'dei messaggi', 'le mail', 'i messaggi'][random.randint(0, 1)]
-
+            
             ret_text = ['I would like to', 'I want to'][random.randint(0, 1)] + ' ' + \
                        ['search', 'read', 'listen to'][random.randint(0, 1)] + ' ' + \
                        ['the emails', 'the messages', 'the emails', 'the messages'][random.randint(0, 1)]
 
             ret_slots = ['O', 'O', 'O', 'O']
         else:
-            # ret_text = ['cerca', 'leggi', 'cerchi'][random.randint(0, 2)] + ' ' + \
-            #            ['le mail', 'i messaggi'][random.randint(0, 1)]
+                     ['le mail', 'i messaggi'][random.randint(0, 1)]
 
             ret_text = ['search for', 'read', 'look for'][random.randint(0, 2)] + ' ' + \
                        ['mails', 'messages'][random.randint(0, 1)]
@@ -290,23 +242,17 @@ def compose_sentence(intent):
 
         n = random.randint(0, 2)
         if n == 0:
-            # ret_text = ['potresti ', 'vorresti '][random.randint(0, 1)] + ' ' + \
-            #            ['leggerla', 'leggermela'][random.randint(0, 1)]
-
+           
             ret_text = ['could you ', 'would you '][random.randint(0, 1)] + ' ' + \
                        ['read it', 'read it to me'][random.randint(0, 1)]
 
         elif n == 1:
-            # ret_text = ['vorrei', 'voglio'][random.randint(0, 1)] + ' ' + \
-            #            ['leggerla', 'leggere la mail', 'leggere il messaggio'][random.randint(0, 2)]
-
+            
             ret_text = ['I would like ti', 'I want to'][random.randint(0, 1)] + ' ' + \
                        ['read it', 'read the email', 'read the message'][random.randint(0, 2)]
 
         else:
-            # ret_text = ['leggila', 'leggi', 'leggimela', 'leggimi la mail',
-            #             'leggimi il messaggio', 'leggi la mail', 'leggi il messaggio'][random.randint(0, 4)]
-
+            
             ret_text = ['read it', 'read', 'read it to me', 'read my email',
                         'read the message', 'read the email', 'read the message'][random.randint(0, 4)]
 
@@ -314,18 +260,13 @@ def compose_sentence(intent):
     elif intent == 3:
 
         if random.randint(0, 1) == 0:
-            # ret_text = ['potresti', 'vorresti', 'vorrei', 'voglio'][random.randint(0, 3)] + ' ' + \
-            #            ['cancellare la mail', 'cancellare il messaggio', 'eliminare la mail', 'cancellarla',
-            #             'eliminare il messaggio', 'eliminarla'][random.randint(0, 5)]
-
+            
             ret_text = ['could you', 'would you', 'I would like', 'I want to'][random.randint(0, 3)] + ' ' + \
                        ['delete the email', 'delete the message', 'delete the email', 'delete it',
                        'delete message', 'delete'][random.randint(0, 5)]
 
         else:
-            # ret_text = ['cancella', 'cancella la mail', 'cancella il messaggio', 'elimina', 'elimina la mail',
-            #             'elimina il messaggio', 'cancellala', 'eliminala'][random.randint(0, 7)]
-
+            
             ret_text = ['delete', 'delete the email', 'delete the message', 'delete', 'delete the email',
                         'delete message', 'delete', 'delete'][random.randint(0, 7)]
 
@@ -334,29 +275,22 @@ def compose_sentence(intent):
     elif intent == 4:
         if random.randint(0, 1) == 0:
 
-            # ret_text = ['potresti', 'vorresti', 'vorrei', 'voglio'][random.randint(0, 3)] + ' ' + \
-            #            ['rispondere', 'rispondere alla mail', 'rispondere al messaggio', 'rispondergli'][
-            #                random.randint(0, 3)]
-
+            
             ret_text = ['could you', 'would you', 'I would like to', 'I want to'][random.randint(0, 3)] + ' ' + \
                        ['reply', 'reply to email', 'reply to message', 'reply to him'][random.randint(0, 3)]
 
         else:
-            # ret_text = ['rispondi', 'rispondi alla mail', 'rispondi al messaggio', 'rispondigli'][random.randint(0, 3)]
-            ret_text = ['reply', 'reply to email', 'reply to message', 'reply to him'][random.randint(0, 3)]
+               ret_text = ['reply', 'reply to email', 'reply to message', 'reply to him'][random.randint(0, 3)]
 
         ret_slots = ['O'] * len(ret_text.split(' '))
 
     elif intent == 5:
         if random.randint(0, 1) == 0:
-            # ret_text = ['potresti', 'vorresti', 'vorrei', 'voglio'][random.randint(0, 3)] + ' ' + \
-            #            ['inoltrare', 'inoltrare la mail', 'inoltrare il messaggio', 'inoltrarla'][random.randint(0, 3)]
             ret_text = ['could you', 'would you', 'I would like to', 'I want to'][random.randint(0, 3)] + ' ' + \
                        ['forward', 'forward the email', 'forward the message', 'forward it'][random.randint(0, 3)]
 
         else:
-            # ret_text = ['inoltra', 'inoltra la mail', 'inoltra il messaggio', 'inoltrala'][random.randint(0, 3)]
-            ret_text = ['forward', 'forward the email', 'forward the message', 'forward it'][random.randint(0, 3)]
+              ret_text = ['forward', 'forward the email', 'forward the message', 'forward it'][random.randint(0, 3)]
 
         ret_slots = ['O'] * len(ret_text.split(' '))
 
@@ -365,17 +299,12 @@ def compose_sentence(intent):
         ret_slots += slot_to_add
     elif intent == 6:
         if random.randint(0, 1) == 0:
-            # ret_text = ['potresti', 'vorresti', 'vorrei', 'voglio'][random.randint(0, 3)] + ' ' + \
-            #            ['chiudere', 'chiudere la mail', 'chiudere il messaggio', 'chiuderla', 'uscire',
-            #             'uscire dalla mail', 'uscire dal messaggio'][random.randint(0, 6)]
-            ret_text = ['could you', 'would you', 'I would like to', 'I want to'][random.randint(0, 3)] + ' ' + \
+               ret_text = ['could you', 'would you', 'I would like to', 'I want to'][random.randint(0, 3)] + ' ' + \
                        ['close', 'close email', 'close message', 'close it', 'exit',
                        'exit mail', 'exit message'][random.randint(0, 6)]
 
         else:
-            # ret_text = ['chiudi', 'chiudila', 'chiudi la mail', 'chiudi il messaggio', 'esci dalla mail',
-            #             'esci dal messaggio'][random.randint(0, 5)]
-            ret_text = ['close', 'close it', 'close email', 'close message', 'exit email','exit message'][random.randint(0, 5)]
+              ret_text = ['close', 'close it', 'close email', 'close message', 'exit email','exit message'][random.randint(0, 5)]
 
 
         ret_slots = ['O'] * len(ret_text.split(' '))
@@ -384,7 +313,7 @@ def compose_sentence(intent):
         tokens = ret_text.split(' ')
         found_first = False
         for i in range(len(tokens) - 1):
-            # con=with ogget=object ed=and
+        
             if tokens[i] == 'with' and not found_first:
                 found_first = True
             elif tokens[i] == 'with' and tokens[i + 1] == 'object':
