@@ -19,7 +19,7 @@ print(vocab_dict)
 
 decoder = build_ctcdecoder(
     labels=list(sorted_vocab_dict.keys()),
-    kenlm_model_path= r"/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailai/notebooks/asr/models/lm/lm.arpa",
+    kenlm_model_path= r"models/lm/lm.arpa",
 )
 
 processor_with_lm = Wav2Vec2ProcessorWithLM(feature_extractor=processor.feature_extractor,
