@@ -5,14 +5,14 @@ from lib import format_tokenclf_result, format_seqclf_result
 class UnderstandingModule:
 
     def __init__(self):
-        tokenizer = AutoTokenizer.from_pretrained('/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailAI/notebooks/bert/models/berttokenizer')
+        tokenizer = AutoTokenizer.from_pretrained('bert/models/berttokenizer')
 
         self.token_clf = pipeline("token-classification",
-                                  model=AutoModelForTokenClassification.from_pretrained('/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailAI/notebooks/bert/models/bert4token'),
+                                  model=AutoModelForTokenClassification.from_pretrained('bert/models/bert4token'),
                                   tokenizer=tokenizer, aggregation_strategy="simple")
 
         self.seq_clf = pipeline('text-classification',
-                                model=AutoModelForSequenceClassification.from_pretrained('/mnt/c/Users/srila/OneDrive/Desktop/project2/blind-mailAI/notebooks/bert/models/bert4sequence'),
+                                model=AutoModelForSequenceClassification.from_pretrained('bert/models/bert4sequence'),
                                 tokenizer=tokenizer)
 
     def process(self, text):
