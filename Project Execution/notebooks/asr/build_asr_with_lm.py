@@ -5,7 +5,7 @@ from transformers import Wav2Vec2ForCTC, Wav2Vec2Processor, Wav2Vec2ProcessorWit
 
 # %% INITIALIZE MODEL
 
-# repo_name = 'maher13/English_ASR'
+
 repo_name = 'jonatasgrosman/wav2vec2-large-xlsr-53-english'
 model = Wav2Vec2ForCTC.from_pretrained(repo_name)
 processor = Wav2Vec2Processor.from_pretrained(repo_name)
